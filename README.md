@@ -19,6 +19,7 @@ Aturan Permainan :
 - Kondisi Menang/Kalah, jika menang ketika semua enemy telah kalah/hilang, maka layar ucapan "selamat ! anda menang" akan ditampilkan atau jika kalah ketika semua     nyawa(heart) PLAYER telah HABIS, maka player kalah. 
 
 ## :alien: Dependensi paket (library) yang dibutuhkan untuk menjalankan aplikasi
+Library python adalah kumpulan modul terkait berisi kumpulan kode yang dapat digunakan berulang kali dalam program yang berbeda. Adanya library membuat pemrograman python menjadi lebih sederhana dan nyaman bagi programmer karena tidak perlu menulis kode yang sama berulang kali untuk program yang berbeda. Pygame adalah modul cross-platform dari Python dirancang untuk membuat game. Modulnya dirancang untuk menjadi sederhana, mudah digunakan, dan menyenangkan. Module sys adalah module yang berfungsi untuk mengakses program itu sendiri dan menjalankan file kode python di lingkungan direktori atau sistem itu sendiri.
 ## :alien: Cara menjalankan aplikasi (cara bermain)
 - Open File main.py yang berada di folder python (pastikan anda telah menginstall pygame pada aplikasi untuk menjalankan program)
 - Kemudian setelahnya run program untuk dapat memainkan permainan
