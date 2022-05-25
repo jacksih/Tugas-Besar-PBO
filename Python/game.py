@@ -236,7 +236,7 @@ class SpaceInvaders:
                     pygame.quit()
 
     def game_result(self):
-        start_img = pygame.image.load('start.png').convert_alpha()
+        retry_img = pygame.image.load('retry.png').convert_alpha()
         exit_img = pygame.image.load('exit.png').convert_alpha()
 
         if not self.enemys.sprites():
@@ -260,16 +260,17 @@ class SpaceInvaders:
                     center = (self.screen_width / 2, self.screen_height / 2))
                 self.screen.blit(lose_surf, lose_rect)
 
-                start_button = Button((self.screen_width/2), 590, start_img, 0.8)
+                start_button = Button((self.screen_width/2), 590, retry_img, 0.8)
                 exit_button = Button((self.screen_width/2), 650, exit_img, 0.8)
 
                 if start_button.draw(self.screen):
+                    self.lives = 3
+                    self.score = 0
                     self.start_game()
                 if exit_button.draw(self.screen):
-                    run = False
+                    pygame.quit()
 
-                pygame.display.flip()
-            pygame.quit
+                pygame.display.update()
 
     def run(self):
         self.player.update()
