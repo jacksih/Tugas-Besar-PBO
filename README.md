@@ -20,6 +20,8 @@ Aturan Permainan :
 
 ## :alien: Dependensi paket (library) yang dibutuhkan untuk menjalankan aplikasi
 ## :alien: Cara menjalankan aplikasi (cara bermain)
+- Open File main.py yang berada di folder python (pastikan anda telah menginstall pygame pada aplikasi untuk menjalankan program)
+- Kemudian setelahnya run program untuk dapat memainkan permainan
 ## :alien: UML class diagram proyek
 ![UML Class Diagram](https://user-images.githubusercontent.com/77344442/170209194-0287c2c7-a1af-45aa-930e-f9292a0e9e86.png)
 
