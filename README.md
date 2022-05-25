@@ -21,4 +21,5 @@ Aturan Permainan :
 ## :alien: Dependensi paket (library) yang dibutuhkan untuk menjalankan aplikasi
 ## :alien: Cara menjalankan aplikasi (cara bermain)
 ## :alien: UML class diagram proyek
+## :alien: Cara menjalankan kontainer
 ## :alien: Kontributor pengembangan aplikasi
