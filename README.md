@@ -9,7 +9,7 @@ Tugas Besar PBO kelompok 7 Kelas PBO-RC Yang berisikan:
 ## :alien: Judul Proyek
 Space Invaders
 ## :alien: Deskripsi Proyek
-Space invaders adalah sebuah game arcade yang bertema di luar angkasa, yang terinspirasi oleh media lain: Breakout, The War of the Worlds, dan Star Wars. space invaders adalah game tembak-menembak yang menampilkan grafik 2D. tujuan dari game ini adalah untuk mendapatkan skor tertinggi dengan menembakan laser ke enemy. 
+Space invaders adalah sebuah game arcade yang bertema di luar angkasa, yang terinspirasi oleh media lain: Breakout, The War of the Worlds, dan Star Wars. Space invaders adalah game tembak-menembak yang menampilkan grafik 2D. Tujuan dari game ini adalah untuk mendapatkan skor tertinggi dengan menembakan laser ke enemy. 
 Aturan Permainan : 
 - Player dapat menembakkan laser dan hanya dapat bergerak secara horizontal. 
 - Enemy disejajarkan dalam formasi persegi, enemy dapat bergerak secara horizontal dan vertikal dan dapat menembakan laser ke arah player.
