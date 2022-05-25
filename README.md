@@ -23,6 +23,7 @@ Library python adalah kumpulan modul terkait berisi kumpulan kode yang dapat dig
 ## :alien: Cara menjalankan aplikasi (cara bermain)
 - Open File main.py yang berada di folder python (pastikan anda telah menginstall pygame pada aplikasi untuk menjalankan program)
 - Kemudian setelahnya run program untuk dapat memainkan permainan
+- Terdapat beberapa shortcut dalam permainan. Tombol Shortcut 1 untuk langsung memenangkan permainan dan Tombol Shortcut 2 dan player akan langsung kalah.
 ## :alien: UML class diagram proyek
 ![UML Class Diagram (4)](https://user-images.githubusercontent.com/77344442/170223193-b10cf73f-9bbf-447d-9ff9-4483f58d6b69.png)
 
