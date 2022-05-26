@@ -2,6 +2,7 @@ import pygame
 import sys
 from random import choice
 
+
 class Player(pygame.sprite.Sprite):
     def __init__(self, position, constraint, velocity):
         super().__init__()
@@ -45,7 +46,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = self.xconstraint
 
     def tembak_laser(self):
-        self.lasers.add(Laser(self.rect.center, -8, self.rect.bottom,'pink'))
+        self.lasers.add(Laser(self.rect.center, -8, self.rect.bottom, 'pink'))
 
     def update(self):
         self.gerak_player()
@@ -58,26 +59,28 @@ class Button():
     def __init__(self, x, y, image, scale):
         width = image.get_width()
         height = image.get_height()
-        self.image = pygame.transform.scale(image, (int(width * scale), int(height * scale)))
+        self.image = pygame.transform.scale(
+            image, (int(width * scale), int(height * scale)))
         self.rect = self.image.get_rect()
         self.rect.midbottom = (x, y)
         self.clicked = False
 
-    def draw(self,surface):
+    def draw(self, surface):
         action = False
-		#get mouse position
+        # get mouse position
         pos = pygame.mouse.get_pos()
 
         if self.rect.collidepoint(pos):
             if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
                 self.clicked = True
                 action = True
-                
+
         if pygame.mouse.get_pressed()[0] == 0:
             self.clicked = False
 
         surface.blit(self.image, (self.rect.x, self.rect.y))
         return action
+
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, color, x, y):
@@ -96,8 +99,9 @@ class Enemy(pygame.sprite.Sprite):
     def update(self, direction):
         self.rect.x += direction
 
+
 class Laser(pygame.sprite.Sprite):
-    def __init__(self, pos, velocity, screen_height,color):
+    def __init__(self, pos, velocity, screen_height, color):
         super().__init__()
         self.image = pygame.Surface((4, 20))
         self.image.fill(color)
@@ -110,20 +114,22 @@ class Laser(pygame.sprite.Sprite):
         if self.rect.y <= -50 or self.rect.y >= self.Y_constraint + 50:
             self.kill()
 
+
 class SpaceInvaders:
     def __init__(self):
-        #window setup
+        # window setup
         self.screen_width = 600
         self.screen_height = 700
-        self.screen = pygame.display.set_mode((self.screen_width,self.screen_height))
+        self.screen = pygame.display.set_mode(
+            (self.screen_width, self.screen_height))
         self.ENEMYLASER = pygame.USEREVENT + 1
         self.clock = pygame.time.Clock()
         self.background = pygame.image.load('background.jpeg').convert_alpha()
         pygame.time.set_timer(self.ENEMYLASER, 800)
-        
-        
+
         # Player setup
-        player_sprite = Player((self.screen_width / 2, self.screen_height), self.screen_width, 5)
+        player_sprite = Player(
+            (self.screen_width / 2, self.screen_height), self.screen_width, 5)
         self.player = pygame.sprite.GroupSingle(player_sprite)
 
         # health and score setup
@@ -181,32 +187,34 @@ class SpaceInvaders:
     def enemy_tembak_laser(self):
         if self.enemys.sprites():
             random_enemy = choice(self.enemys.sprites())
-            laser_sprite = Laser(random_enemy.rect.center, 10, self.screen_height, 'green')
+            laser_sprite = Laser(random_enemy.rect.center,
+                                 10, self.screen_height, 'green')
             self.enemy_lasers.add(laser_sprite)
             self.laser_sound.play()
 
     def collision(self):
         if self.player.sprite.lasers:
             for laser in self.player.sprite.lasers:
-				# enemy collisions
-                enemys_hit = pygame.sprite.spritecollide(laser,self.enemys,True)
+                # enemy collisions
+                enemys_hit = pygame.sprite.spritecollide(
+                    laser, self.enemys, True)
                 if enemys_hit:
                     for enemy in enemys_hit:
                         self.score += enemy.value
                         laser.kill()
                         self.explosion_sound.play()
 
-		# enemy lasers 
+                # enemy lasers
         if self.enemy_lasers:
             for laser in self.enemy_lasers:
-                if pygame.sprite.spritecollide(laser,self.player,False):
+                if pygame.sprite.spritecollide(laser, self.player, False):
                     laser.kill()
                     self.lives -= 1
 
-        #enemy
+        # enemy
         if self.enemys:
             for enemy in self.enemys:
-                if pygame.sprite.spritecollide(enemy,self.player,False):
+                if pygame.sprite.spritecollide(enemy, self.player, False):
                     pygame.quit()
                     sys.exit()
 
@@ -222,10 +230,10 @@ class SpaceInvaders:
         self.screen.blit(score_surf, score_rect)
 
     def shortcut_kalah(self):
-        self.screen.blit(self.background,(0,0))
+        self.screen.blit(self.background, (0, 0))
         lose_surf = self.font.render('Anda Kalah!', False, 'white')
         lose_rect = lose_surf.get_rect(
-            center = (self.screen_width / 2, self.screen_height / 2))
+            center=(self.screen_width / 2, self.screen_height / 2))
         self.screen.blit(lose_surf, lose_rect)
         pygame.display.flip()
 
@@ -235,17 +243,48 @@ class SpaceInvaders:
                 if event.type == pygame.QUIT:
                     pygame.quit()
 
-    def game_result(self):
+    def menu_retry(self):
         retry_img = pygame.image.load('retry.png').convert_alpha()
         exit_img = pygame.image.load('exit.png').convert_alpha()
+        resume_img = pygame.image.load('resume.png').convert_alpha()
+
+        retry_button = Button((self.screen_width/2), 590, retry_img, 0.8)
+        resume_button = Button((self.screen_width/2), 530, resume_img, 0.8)
+        exit_button = Button((self.screen_width/2), 650, exit_img, 0.8)
+
+        if retry_button.draw(self.screen):
+            player_sprite = Player(
+                (self.screen_width / 2, self.screen_height), self.screen_width, 5)
+            self.player = pygame.sprite.GroupSingle(player_sprite)
+            self.enemy_lasers = pygame.sprite.Group()
+            self.player.update()
+            self.lives = 3
+            self.score = 0
+            self.enemys = pygame.sprite.Group()
+            self.enemy_setup(6, 6)
+            self.enemy_direction = 1
+            self.start_game()
+
+        if resume_button.draw(self.screen):
+            pygame.display.flip()
+            pygame.display.update()
+            self.lives = 3
+            self.start_game()
+        if exit_button.draw(self.screen):
+            pygame.quit()
+
+    def game_result(self):
 
         if not self.enemys.sprites():
-            victory_surf = self.font.render('SELAMAT! Anda Menang', False, 'white')
+            victory_surf = self.font.render(
+                'SELAMAT! Anda Menang', False, 'white')
             victory_rect = victory_surf.get_rect(
                 center=(self.screen_width / 2, self.screen_height / 2))
             self.screen.blit(victory_surf, victory_rect)
+            self.menu_retry()
+            pygame.display.update()
 
-        #menu kalah
+        # menu kalah
         if self.lives <= 0:
             run = True
             while run:
@@ -254,21 +293,12 @@ class SpaceInvaders:
                     if event.type == pygame.QUIT:
                         pygame.quit()
 
-                self.screen.blit(self.background,(0,0))
+                self.screen.blit(self.background, (0, 0))
                 lose_surf = self.font.render('Anda Kalah!', False, 'white')
                 lose_rect = lose_surf.get_rect(
-                    center = (self.screen_width / 2, self.screen_height / 2))
+                    center=(self.screen_width / 2, self.screen_height / 2))
                 self.screen.blit(lose_surf, lose_rect)
-
-                start_button = Button((self.screen_width/2), 590, retry_img, 0.8)
-                exit_button = Button((self.screen_width/2), 650, exit_img, 0.8)
-
-                if start_button.draw(self.screen):
-                    self.lives = 3
-                    self.score = 0
-                    self.start_game()
-                if exit_button.draw(self.screen):
-                    pygame.quit()
+                self.menu_retry()
 
                 pygame.display.update()
 
@@ -298,16 +328,17 @@ class SpaceInvaders:
                 if event.type == self.ENEMYLASER:
                     self.enemy_tembak_laser()
 
-            self.screen.blit(self.background,(0,0))
+            self.screen.blit(self.background, (0, 0))
             self.run()
 
             if keys[pygame.K_1]:
                 self.enemys.empty()
                 self.game_result()
+                self.menu_retry()
 
             if keys[pygame.K_2]:
                 self.lives = 0
-                self.shortcut_kalah()
+                self.menu_retry()
 
             pygame.display.flip()
             self.clock.tick(60)
