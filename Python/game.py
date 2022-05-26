@@ -229,21 +229,7 @@ class SpaceInvaders:
         score_rect = score_surf.get_rect(topleft=(10, 10))
         self.screen.blit(score_surf, score_rect)
 
-    def shortcut_kalah(self):
-        self.screen.blit(self.background, (0, 0))
-        lose_surf = self.font.render('Anda Kalah!', False, 'white')
-        lose_rect = lose_surf.get_rect(
-            center=(self.screen_width / 2, self.screen_height / 2))
-        self.screen.blit(lose_surf, lose_rect)
-        pygame.display.flip()
-
-        while True:
-            self.clock.tick(60)
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-
-    def menu_retry(self):
+    def menu_retry_kalah(self):
         retry_img = pygame.image.load('retry.png').convert_alpha()
         exit_img = pygame.image.load('exit.png').convert_alpha()
         resume_img = pygame.image.load('resume.png').convert_alpha()
@@ -269,7 +255,32 @@ class SpaceInvaders:
             pygame.display.flip()
             pygame.display.update()
             self.lives = 3
+            self.score = self.score - 500
             self.start_game()
+
+        if exit_button.draw(self.screen):
+            pygame.quit()
+
+    def menu_retry_menang(self):
+        retry_img = pygame.image.load('retry.png').convert_alpha()
+        exit_img = pygame.image.load('exit.png').convert_alpha()
+
+        retry_button = Button((self.screen_width/2), 590, retry_img, 0.8)
+        exit_button = Button((self.screen_width/2), 650, exit_img, 0.8)
+
+        if retry_button.draw(self.screen):
+            player_sprite = Player(
+                (self.screen_width / 2, self.screen_height), self.screen_width, 5)
+            self.player = pygame.sprite.GroupSingle(player_sprite)
+            self.enemy_lasers = pygame.sprite.Group()
+            self.player.update()
+            self.lives = 3
+            self.score = 0
+            self.enemys = pygame.sprite.Group()
+            self.enemy_setup(6, 6)
+            self.enemy_direction = 1
+            self.start_game()
+
         if exit_button.draw(self.screen):
             pygame.quit()
 
@@ -281,7 +292,7 @@ class SpaceInvaders:
             victory_rect = victory_surf.get_rect(
                 center=(self.screen_width / 2, self.screen_height / 2))
             self.screen.blit(victory_surf, victory_rect)
-            self.menu_retry()
+            self.menu_retry_menang()
             pygame.display.update()
 
         # menu kalah
@@ -298,7 +309,7 @@ class SpaceInvaders:
                 lose_rect = lose_surf.get_rect(
                     center=(self.screen_width / 2, self.screen_height / 2))
                 self.screen.blit(lose_surf, lose_rect)
-                self.menu_retry()
+                self.menu_retry_kalah()
 
                 pygame.display.update()
 
@@ -334,11 +345,11 @@ class SpaceInvaders:
             if keys[pygame.K_1]:
                 self.enemys.empty()
                 self.game_result()
-                self.menu_retry()
+                self.menu_retry_menang()
 
             if keys[pygame.K_2]:
                 self.lives = 0
-                self.menu_retry()
+                self.menu_retry_kalah()
 
             pygame.display.flip()
             self.clock.tick(60)
