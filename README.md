@@ -47,3 +47,9 @@ docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --device
   ```
 
 ## :alien: Kontributor pengembangan aplikasi
+Marchell Manurung (120140208)
+Namira Aulia (120140210)
+Shakira Fairuz Putri (120140217)
+Dhilan Septa Yudha (120140224)
+Jacky Z.M Sihombing (120140226)
+Satrio Maruli Jaya Sianturi (120140238)
