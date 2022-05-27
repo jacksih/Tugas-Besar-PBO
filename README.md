@@ -29,4 +29,16 @@ Library python adalah kumpulan modul terkait berisi kumpulan kode yang dapat dig
 
 
 ## :alien: Cara menjalankan kontainer
+Docker adalah teknologi containerisasi yang memungkinkan kita untuk membangun, menguji, dan menggunakan aplikasi dengan dimana saja yang berada dalam sebuah wadah disebut container. Konsep Docker mirip virtual machine.
+1. Buatlah Docker file. Dockerfile merupakan sebuah file yang mana pada file tersebut berisikan berbagai macam instruksi yang akan dieksekusi untuk membangun sebuah image.
+2. Buat juga Build Image, jalankan perintah docker build. Kita bisa memberikan tag dengan parameter --tag (docker build --tag space-invaders).
+3. setelah berhasil menjalankan imagenya, kemudiana jalankan command,
+XAUTH=$HOME/.Xauthority
+touch $XAUTH
+xhost +
+di root terminal.
+4. kemudian run docker melalui command.
+docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --device /dev/snd space-invaders.
+
+ 
 ## :alien: Kontributor pengembangan aplikasi
