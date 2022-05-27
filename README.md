@@ -30,6 +30,24 @@ Library python adalah kumpulan modul terkait berisi kumpulan kode yang dapat dig
 
 ## :alien: Cara menjalankan kontainer
 Docker adalah teknologi containerisasi yang memungkinkan kita untuk membangun, menguji, dan menggunakan aplikasi dengan dimana saja yang berada dalam sebuah wadah disebut container. Konsep Docker mirip virtual machine.
+
+Alternatif Pertama
+1. Pertama kita harus menarik images dari repository ke local dengan command
+```bash
+docker pull dhilansepta/space-invaders:latest
+  ```
+2. Setelah berhasil di pull, selanjutnya adalah menjalankan command sebagai berikut
+```bash
+XAUTH=$HOME/.Xauthority
+touch $XAUTH
+xhost +
+  ```
+3. Setelah itu kita bisa langsung menjalankan aplikasi dengan command :
+```bash
+docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=unix$DISPLAY --device /dev/snd dhilansepta/space-invaders:latest
+  ```
+
+Alternatif Kedua
 1. Buatlah Docker file. Dockerfile merupakan sebuah file yang mana pada file tersebut berisikan berbagai macam instruksi yang akan dieksekusi untuk membangun sebuah image.
 2. Buat juga Build Image, jalankan perintah docker build. Kita bisa memberikan tag dengan parameter --tag 
 ```bash
