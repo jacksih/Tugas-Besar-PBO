@@ -32,7 +32,7 @@ Library python adalah kumpulan modul terkait berisi kumpulan kode yang dapat dig
 Docker adalah teknologi containerisasi yang memungkinkan kita untuk membangun, menguji, dan menggunakan aplikasi dengan dimana saja yang berada dalam sebuah wadah disebut container. Konsep Docker mirip virtual machine.
 1. Buatlah Docker file. Dockerfile merupakan sebuah file yang mana pada file tersebut berisikan berbagai macam instruksi yang akan dieksekusi untuk membangun sebuah image.
 2. Buat juga Build Image, jalankan perintah docker build. Kita bisa memberikan tag dengan parameter --tag (docker build --tag space-invaders).
-3. setelah berhasil menjalankan imagenya, kemudiana jalankan command,
+3. setelah berhasil menjalankan imagenya, kemudian jalankan command,
 XAUTH=$HOME/.Xauthority
 touch $XAUTH
 xhost +
