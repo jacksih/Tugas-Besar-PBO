@@ -2,11 +2,10 @@ import pygame
 import sys
 from random import choice
 
-
 class Player(pygame.sprite.Sprite):
     def __init__(self, position, constraint, velocity):
         super().__init__()
-        self.image = pygame.image.load('player.png')
+        self.image = pygame.image.load('./Assets/player.png')
         self.rect = self.image.get_rect(midbottom=position)
         self.velocity = velocity
         self.xconstraint = constraint
@@ -16,7 +15,7 @@ class Player(pygame.sprite.Sprite):
 
         self.lasers = pygame.sprite.Group()
 
-        self.laser_sound = pygame.mixer.Sound('laser.wav')
+        self.laser_sound = pygame.mixer.Sound('./Assets/laser.wav')
         self.laser_sound.set_volume(0)
 
     def gerak_player(self):
@@ -86,7 +85,7 @@ class Enemy(pygame.sprite.Sprite):
     def __init__(self, color, x, y):
         super().__init__()
         file_path = color + '.png'
-        self.image = pygame.image.load(file_path).convert_alpha()
+        self.image = pygame.image.load('./Assets/' + file_path).convert_alpha()
         self.rect = self.image.get_rect(topleft=(x, y))
 
         if color == 'orange':
@@ -124,7 +123,7 @@ class SpaceInvaders:
             (self.screen_width, self.screen_height))
         self.ENEMYLASER = pygame.USEREVENT + 1
         self.clock = pygame.time.Clock()
-        self.background = pygame.image.load('background.jpeg').convert_alpha()
+        self.background = pygame.image.load('./Assets/background.jpeg').convert_alpha()
         pygame.time.set_timer(self.ENEMYLASER, 800)
 
         # Player setup
@@ -134,11 +133,11 @@ class SpaceInvaders:
 
         # health and score setup
         self.lives = 3
-        self.live_surf = pygame.image.load('lives.png').convert_alpha()
+        self.live_surf = pygame.image.load('./Assets/lives.png').convert_alpha()
         self.live_x_start_pos = self.screen_width - \
             (self.live_surf.get_size()[0] * 2 + 20)
         self.score = 0
-        self.font = pygame.font.Font('m04.ttf', 20)
+        self.font = pygame.font.Font('./Assets/m04.TTF', 20)
 
         # Enemy setup
         self.enemys = pygame.sprite.Group()
@@ -147,12 +146,12 @@ class SpaceInvaders:
         self.enemy_direction = 1
 
         # Audio setup
-        music = pygame.mixer.Sound('music.wav')
+        music = pygame.mixer.Sound('./Assets/music.wav')
         music.set_volume(0)
         music.play(loops=-1)
-        self.laser_sound = pygame.mixer.Sound('laser.wav')
+        self.laser_sound = pygame.mixer.Sound('./Assets/laser.wav')
         self.laser_sound.set_volume(0)
-        self.explosion_sound = pygame.mixer.Sound('explosion.wav')
+        self.explosion_sound = pygame.mixer.Sound('./Assets/explosion.wav')
         self.explosion_sound.set_volume(0)
 
     def enemy_setup(self, rows, cols, x_distance=60, y_distance=48, x_offset=70, y_offset=120):
@@ -230,9 +229,9 @@ class SpaceInvaders:
         self.screen.blit(score_surf, score_rect)
 
     def menu_retry_kalah(self):
-        retry_img = pygame.image.load('retry.png').convert_alpha()
-        exit_img = pygame.image.load('exit.png').convert_alpha()
-        resume_img = pygame.image.load('resume.png').convert_alpha()
+        retry_img = pygame.image.load('./Assets/retry.png').convert_alpha()
+        exit_img = pygame.image.load('./Assets/exit.png').convert_alpha()
+        resume_img = pygame.image.load('./Assets/resume.png').convert_alpha()
 
         retry_button = Button((self.screen_width/2), 590, retry_img, 0.8)
         resume_button = Button((self.screen_width/2), 530, resume_img, 0.8)
@@ -262,8 +261,8 @@ class SpaceInvaders:
             pygame.quit()
 
     def menu_retry_menang(self):
-        retry_img = pygame.image.load('retry.png').convert_alpha()
-        exit_img = pygame.image.load('exit.png').convert_alpha()
+        retry_img = pygame.image.load('./Assets/retry.png').convert_alpha()
+        exit_img = pygame.image.load('./Assets/exit.png').convert_alpha()
 
         retry_button = Button((self.screen_width/2), 590, retry_img, 0.8)
         exit_button = Button((self.screen_width/2), 650, exit_img, 0.8)

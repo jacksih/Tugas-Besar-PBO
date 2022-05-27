@@ -3,12 +3,13 @@ from game import SpaceInvaders, Button
 
 if __name__ == '__main__':
     pygame.init()
+    pygame.mixer.init()
     game = SpaceInvaders()
-    pygame.display.set_caption("Menu Space Invaders")
+    pygame.display.set_caption("Space Invaders")
 
-    enemy_imageblue = pygame.image.load('blue.png').convert_alpha()
-    enemy_imageorange = pygame.image.load('orange.png').convert_alpha()
-    enemy_imagegreen = pygame.image.load('green.png').convert_alpha()
+    enemy_imageblue = pygame.image.load('./Assets/blue.png').convert_alpha()
+    enemy_imageorange = pygame.image.load('./Assets/orange.png').convert_alpha()
+    enemy_imagegreen = pygame.image.load('./Assets/green.png').convert_alpha()
     scoreo = game.font.render('100', True, 'white')
     scoreg = game.font.render('200', True, 'white')
     scoreb = game.font.render('300', True, 'white')
@@ -19,9 +20,9 @@ if __name__ == '__main__':
     scoreE = game.font.render('Score Enemy', True, 'white')
     scoreERect = scoreE.get_rect()
 
-    logo_img = pygame.image.load('mainlogo.png').convert_alpha()
-    start_img = pygame.image.load('start.png').convert_alpha()
-    exit_img = pygame.image.load('exit.png').convert_alpha()
+    logo_img = pygame.image.load('./Assets/mainlogo.png').convert_alpha()
+    start_img = pygame.image.load('./Assets/start.png').convert_alpha()
+    exit_img = pygame.image.load('./Assets/exit.png').convert_alpha()
     
     run = True
     while run:
