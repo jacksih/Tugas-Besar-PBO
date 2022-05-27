@@ -35,7 +35,7 @@ Docker adalah teknologi containerisasi yang memungkinkan kita untuk membangun, m
 ```bash
 docker build --tag space-invaders
   ```
-3. Setelah berhasil menjalankan imagenya, kemudian jalankan command di root terminal.
+3. Setelah berhasil membuild imagenya, kemudian jalankan command di root terminal.
 ```bash
 XAUTH=$HOME/.Xauthority
 touch $XAUTH
