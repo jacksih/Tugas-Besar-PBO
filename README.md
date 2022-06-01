@@ -17,6 +17,7 @@ Aturan Permainan :
 - Jumlah awal nyawa (heart) adalah tiga.
 - Terdapat tiga tipe enemy. setiap enemy yang tereleminasi masing-masing bernilai 100, 200, dan 300
 - Kondisi Menang/Kalah, jika menang ketika semua enemy telah kalah/hilang, maka layar ucapan "selamat ! anda menang" akan ditampilkan atau jika kalah ketika semua     nyawa(heart) PLAYER telah HABIS, maka player kalah. 
+- Saat player kalah/nyawa telah habis, player dapat melanjutkan permainan dengan menekan tombol resume. Ketika player menekan tombol resume, score sebelumnya akan dikurangi 500 dan permainan akan berlanjut.
 
 ## :alien: Dependensi paket (library) yang dibutuhkan untuk menjalankan aplikasi
 Library python adalah kumpulan modul terkait berisi kumpulan kode yang dapat digunakan berulang kali dalam program yang berbeda. Adanya library membuat pemrograman python menjadi lebih sederhana dan nyaman bagi programmer karena tidak perlu menulis kode yang sama berulang kali untuk program yang berbeda. Pygame adalah modul cross-platform dari Python dirancang untuk membuat game. Modulnya dirancang untuk menjadi sederhana, mudah digunakan, dan menyenangkan. Modul sys adalah modul yang berfungsi untuk mengakses program itu sendiri dan menjalankan file kode python di lingkungan direktori atau sistem itu sendiri.
