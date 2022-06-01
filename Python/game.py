@@ -142,17 +142,17 @@ class SpaceInvaders:
         # Enemy setup
         self.enemys = pygame.sprite.Group()
         self.enemy_lasers = pygame.sprite.Group()
-        self.enemy_setup(rows=6, cols=6)
+        self.enemy_setup(rows=7, cols=7)
         self.enemy_direction = 1
 
         # Audio setup
         music = pygame.mixer.Sound('./Assets/music.wav')
-        music.set_volume(0)
+        music.set_volume(0.5)
         music.play(loops=-1)
         self.laser_sound = pygame.mixer.Sound('./Assets/laser.wav')
-        self.laser_sound.set_volume(0)
+        self.laser_sound.set_volume(0.5)
         self.explosion_sound = pygame.mixer.Sound('./Assets/explosion.wav')
-        self.explosion_sound.set_volume(0)
+        self.explosion_sound.set_volume(0.5)
 
     def enemy_setup(self, rows, cols, x_distance=60, y_distance=48, x_offset=70, y_offset=120):
         for row_index, row in enumerate(range(rows)):
